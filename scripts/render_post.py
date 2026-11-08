@@ -15,6 +15,8 @@ Placeholders:
                             the state (by name) and amount with the largest and
                             smallest tax_on_military_pay of $1 or more
   {{fedchange:ARCH}}        the federal income tax the pay adds, as "$1,234"
+  {{usd:ARCH:ST:COLUMN}}    any dollar column of the results CSV for a state, as
+                            "$1,234" (for example federal_agi_military)
 
 Text in [[TODO: ...]] marks a sentence that waits on a source; --final refuses
 to render while any remains.
@@ -41,7 +43,9 @@ STATE_NAMES = {
     "CO": "Colorado",
     "CT": "Connecticut",
     "DE": "Delaware",
-    "DC": "the District of Columbia",
+    # The post names "the District of Columbia" in full before any state
+    # placeholder, so placeholders use the short form.
+    "DC": "DC",
     "FL": "Florida",
     "GA": "Georgia",
     "HI": "Hawaii",
@@ -130,12 +134,17 @@ class Renderer:
         rows = self.rows(arch)
         return rows[rows.tax_on_military_pay.round() >= 1]
 
-    def tax(self, arch: str, state: str) -> str:
+    def value(self, arch: str, state: str, column: str) -> float:
         row = self.rows(arch)
         row = row[row.state == state]
         if row.empty:
             raise KeyError(f"unknown state {state!r}")
-        return dollars(row.tax_on_military_pay.iloc[0])
+        if column not in row:
+            raise KeyError(f"unknown column {column!r}")
+        return row[column].iloc[0]
+
+    def tax(self, arch: str, state: str) -> str:
+        return dollars(self.value(arch, state, "tax_on_military_pay"))
 
     def nstates_plus_dc(self, arch: str) -> str:
         taxed = set(self.taxed(arch).state)
@@ -186,6 +195,8 @@ class Renderer:
             return dollars(self.extreme(*parts, kind == "maxtax").tax_on_military_pay)
         if kind == "fedchange":
             return self.fedchange(*parts)
+        if kind == "usd":
+            return dollars(self.value(*parts))
         raise KeyError(f"unknown placeholder {match.group(0)}")
 
 

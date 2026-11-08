@@ -51,6 +51,10 @@ From these, `outputs/state_military_retirement_2026.csv` reports, for each state
 - `military_break` = state income tax (`civilian`) minus state income tax (`military`), the
   value of the rules a state gives military retirees and not other retirees.
 
+For each scenario the CSV also records state income tax and state AGI, federal income
+tax, federal AGI and taxable Social Security, the inputs to the credits and deductions
+that the post explains.
+
 State income tax here means PolicyEngine's `state_income_tax` for the tax unit,
 after credits. Refundable credits reduce it, so a state can show a negative
 `tax_on_military_pay`: Alabama and Missouri let filers deduct federal income tax, and

@@ -224,6 +224,10 @@ def run(arch):
             "state_income_tax": sim.calculate("state_income_tax", YEAR),
             "state_agi": sim.calculate("state_agi", YEAR),
             "federal_income_tax": sim.calculate("income_tax", YEAR),
+            "federal_agi": sim.calculate("adjusted_gross_income", YEAR),
+            "taxable_social_security": sim.calculate(
+                "taxable_social_security", YEAR, map_to="tax_unit"
+            ),
         }
     df = pd.DataFrame({"state": STATES})
     for scenario, vals in out.items():
