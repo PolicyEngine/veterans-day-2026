@@ -1,0 +1,215 @@
+"""Render the blog post from its template and the calculation outputs.
+
+The template (post/template.md) writes every model number as a placeholder,
+so the post's text and charts always match outputs/state_military_retirement_2026.csv
+and outputs/post_charts/. Rerun after every calculation:
+
+    .venv/bin/python scripts/render_post.py [--out PATH] [--final]
+
+Placeholders:
+  {{chart:NAME}}            the ```chart block from outputs/post_charts/NAME.json
+  {{tax:ARCH:ST}}           |tax_on_military_pay| for a state, as "$1,234"
+  {{nstates_plus_dc:ARCH}}  the number of states, as a word, other than DC, whose
+                            tax_on_military_pay is $1 or more; fails unless DC's is too
+  {{maxstate:ARCH}} {{maxtax:ARCH}} {{minstate:ARCH}} {{mintax:ARCH}}
+                            the state (by name) and amount with the largest and
+                            smallest tax_on_military_pay of $1 or more
+  {{fedchange:ARCH}}        the federal income tax the pay adds, as "$1,234"
+
+Text in [[TODO: ...]] marks a sentence that waits on a source; --final refuses
+to render while any remains.
+"""
+
+import argparse
+import json
+import pathlib
+import re
+import sys
+
+import pandas as pd
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+TEMPLATE = ROOT / "post" / "template.md"
+DEFAULT_OUT = ROOT / "post" / "military-retired-pay-state-taxes-2026.md"
+
+STATE_NAMES = {
+    "AL": "Alabama",
+    "AK": "Alaska",
+    "AZ": "Arizona",
+    "AR": "Arkansas",
+    "CA": "California",
+    "CO": "Colorado",
+    "CT": "Connecticut",
+    "DE": "Delaware",
+    "DC": "the District of Columbia",
+    "FL": "Florida",
+    "GA": "Georgia",
+    "HI": "Hawaii",
+    "ID": "Idaho",
+    "IL": "Illinois",
+    "IN": "Indiana",
+    "IA": "Iowa",
+    "KS": "Kansas",
+    "KY": "Kentucky",
+    "LA": "Louisiana",
+    "ME": "Maine",
+    "MD": "Maryland",
+    "MA": "Massachusetts",
+    "MI": "Michigan",
+    "MN": "Minnesota",
+    "MS": "Mississippi",
+    "MO": "Missouri",
+    "MT": "Montana",
+    "NE": "Nebraska",
+    "NV": "Nevada",
+    "NH": "New Hampshire",
+    "NJ": "New Jersey",
+    "NM": "New Mexico",
+    "NY": "New York",
+    "NC": "North Carolina",
+    "ND": "North Dakota",
+    "OH": "Ohio",
+    "OK": "Oklahoma",
+    "OR": "Oregon",
+    "PA": "Pennsylvania",
+    "RI": "Rhode Island",
+    "SC": "South Carolina",
+    "SD": "South Dakota",
+    "TN": "Tennessee",
+    "TX": "Texas",
+    "UT": "Utah",
+    "VT": "Vermont",
+    "VA": "Virginia",
+    "WA": "Washington",
+    "WV": "West Virginia",
+    "WI": "Wisconsin",
+    "WY": "Wyoming",
+}
+
+NUMBER_WORDS = [
+    "no",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+    "thirteen",
+    "fourteen",
+    "fifteen",
+    "sixteen",
+    "seventeen",
+    "eighteen",
+    "nineteen",
+    "twenty",
+]
+
+
+def dollars(x: float) -> str:
+    return f"${abs(round(x)):,}"
+
+
+class Renderer:
+    def __init__(self, df: pd.DataFrame, charts: pathlib.Path):
+        self.df = df
+        self.charts = charts
+
+    def rows(self, arch: str) -> pd.DataFrame:
+        rows = self.df[self.df.archetype == arch]
+        if rows.empty:
+            raise KeyError(f"unknown archetype {arch!r}")
+        return rows
+
+    def taxed(self, arch: str) -> pd.DataFrame:
+        rows = self.rows(arch)
+        return rows[rows.tax_on_military_pay.round() >= 1]
+
+    def tax(self, arch: str, state: str) -> str:
+        row = self.rows(arch)
+        row = row[row.state == state]
+        if row.empty:
+            raise KeyError(f"unknown state {state!r}")
+        return dollars(row.tax_on_military_pay.iloc[0])
+
+    def nstates_plus_dc(self, arch: str) -> str:
+        taxed = set(self.taxed(arch).state)
+        if "DC" not in taxed:
+            raise ValueError(f"{arch}: the text names DC, but DC's tax is under $1")
+        return NUMBER_WORDS[len(taxed - {"DC"})]
+
+    def extreme(self, arch: str, largest: bool) -> pd.Series:
+        taxed = self.taxed(arch).sort_values("tax_on_military_pay")
+        return taxed.iloc[-1] if largest else taxed.iloc[0]
+
+    def fedchange(self, arch: str) -> str:
+        rows = self.rows(arch)
+        change = (
+            rows.federal_income_tax_military - rows.federal_income_tax_none
+        ).round()
+        if change.nunique() != 1:
+            raise ValueError(f"{arch}: federal tax change differs across states")
+        return dollars(change.iloc[0])
+
+    def chart(self, name: str) -> str:
+        """A ```chart block with each data row and bin on one line, as posts write them."""
+        spec = json.loads((self.charts / f"{name}.json").read_text())
+        lines = []
+        for key, value in spec.items():
+            if isinstance(value, list) and all(isinstance(v, dict) for v in value):
+                rows = ",\n".join(f"    {json.dumps(v)}" for v in value)
+                lines.append(f'  "{key}": [\n{rows}\n  ]')
+            else:
+                lines.append(f'  "{key}": {json.dumps(value)}')
+        body = "{\n" + ",\n".join(lines) + "\n}"
+        if json.loads(body) != spec:
+            raise ValueError(f"{name}: compact formatting changed the spec")
+        return "```chart\n" + body + "\n```"
+
+    def __call__(self, match: re.Match) -> str:
+        kind, _, args = match.group(1).partition(":")
+        parts = args.split(":") if args else []
+        if kind == "chart":
+            return self.chart(*parts)
+        if kind == "tax":
+            return self.tax(*parts)
+        if kind == "nstates_plus_dc":
+            return self.nstates_plus_dc(*parts)
+        if kind in ("maxstate", "minstate"):
+            return STATE_NAMES[self.extreme(*parts, kind == "maxstate").state]
+        if kind in ("maxtax", "mintax"):
+            return dollars(self.extreme(*parts, kind == "maxtax").tax_on_military_pay)
+        if kind == "fedchange":
+            return self.fedchange(*parts)
+        raise KeyError(f"unknown placeholder {match.group(0)}")
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--out", type=pathlib.Path, default=DEFAULT_OUT)
+    parser.add_argument(
+        "--final", action="store_true", help="refuse to render with TODOs left"
+    )
+    args = parser.parse_args()
+    df = pd.read_csv(ROOT / "outputs" / "state_military_retirement_2026.csv")
+    text = TEMPLATE.read_text()
+    todos = re.findall(r"\[\[TODO:.*?\]\]", text, flags=re.S)
+    if todos and args.final:
+        sys.exit(f"{len(todos)} TODO markers remain; resolve them before --final")
+    rendered = re.sub(
+        r"\{\{([^{}]+)\}\}", Renderer(df, ROOT / "outputs" / "post_charts"), text
+    )
+    if "{{" in rendered or "}}" in rendered:
+        sys.exit("an unmatched placeholder brace remains")
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text(rendered)
+    print(f"wrote {args.out} ({len(todos)} TODO markers)")
+
+
+if __name__ == "__main__":
+    main()

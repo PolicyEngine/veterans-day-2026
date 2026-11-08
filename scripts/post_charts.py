@@ -89,8 +89,8 @@ def negative_note(df: pd.DataFrame) -> str:
     assert not unknown, f"name these states and check why their tax falls: {unknown}"
     listed = " and ".join(names[s] for s in below)
     return (
-        "Below zero: the pay raises federal income tax, which "
-        f"{listed} let filers deduct."
+        f"{listed} let filers deduct federal income tax, which the pay raises, "
+        "so the pay lowers their state income tax."
     )
 
 
@@ -130,7 +130,10 @@ def main():
                 sub, arch, meta, f"State income tax on {pay} of military retired pay"
             ),
             f"bar_{key}": taxing_states_bar(
-                sub, arch, meta, f"States that tax {pay} of military retired pay"
+                sub,
+                arch,
+                meta,
+                f"Where {pay} of military retired pay raises state income tax",
             ),
         }
         for name, spec in specs.items():
