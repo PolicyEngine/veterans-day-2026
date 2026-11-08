@@ -3,6 +3,7 @@
 A run may use the pinned release from requirements.txt or, with PYTHONPATH,
 a policyengine-us checkout carrying unreleased fixes. Outputs record which.
 """
+
 import importlib.metadata
 import pathlib
 import subprocess
@@ -24,7 +25,9 @@ def model_source() -> dict:
     def git(*args):
         return subprocess.run(
             ["git", "-C", str(package.parent), *args],
-            capture_output=True, text=True, check=True,
+            capture_output=True,
+            text=True,
+            check=True,
         ).stdout.strip()
 
     source["policyengine_us"] = f"checkout {git('rev-parse', 'HEAD')[:10]}"

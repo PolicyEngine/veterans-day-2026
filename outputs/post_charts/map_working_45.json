@@ -1,0 +1,241 @@
+{
+  "type": "stateMap",
+  "title": "State income tax on $30,000 of military retired pay",
+  "subtitle": "Extra state income tax a married couple owes when one spouse, age 45, receives $30,000 of military retired pay on top of $60,000 of wages, 2026",
+  "stateKey": "state",
+  "valueKey": "tax",
+  "data": [
+    {
+      "state": "AL",
+      "tax": -180
+    },
+    {
+      "state": "AK",
+      "tax": 0
+    },
+    {
+      "state": "AZ",
+      "tax": 0
+    },
+    {
+      "state": "AR",
+      "tax": 0
+    },
+    {
+      "state": "CA",
+      "tax": 292
+    },
+    {
+      "state": "CO",
+      "tax": 660
+    },
+    {
+      "state": "CT",
+      "tax": 0
+    },
+    {
+      "state": "DE",
+      "tax": 1087
+    },
+    {
+      "state": "DC",
+      "tax": 1897
+    },
+    {
+      "state": "FL",
+      "tax": 0
+    },
+    {
+      "state": "GA",
+      "tax": 0
+    },
+    {
+      "state": "HI",
+      "tax": 0
+    },
+    {
+      "state": "ID",
+      "tax": 0
+    },
+    {
+      "state": "IL",
+      "tax": 0
+    },
+    {
+      "state": "IN",
+      "tax": 0
+    },
+    {
+      "state": "IA",
+      "tax": 0
+    },
+    {
+      "state": "KS",
+      "tax": 0
+    },
+    {
+      "state": "KY",
+      "tax": 0
+    },
+    {
+      "state": "LA",
+      "tax": 0
+    },
+    {
+      "state": "ME",
+      "tax": 55
+    },
+    {
+      "state": "MD",
+      "tax": 831
+    },
+    {
+      "state": "MA",
+      "tax": 0
+    },
+    {
+      "state": "MI",
+      "tax": 0
+    },
+    {
+      "state": "MN",
+      "tax": 0
+    },
+    {
+      "state": "MS",
+      "tax": 0
+    },
+    {
+      "state": "MO",
+      "tax": -25
+    },
+    {
+      "state": "MT",
+      "tax": 1410
+    },
+    {
+      "state": "NE",
+      "tax": 0
+    },
+    {
+      "state": "NV",
+      "tax": 0
+    },
+    {
+      "state": "NH",
+      "tax": 0
+    },
+    {
+      "state": "NJ",
+      "tax": 0
+    },
+    {
+      "state": "NM",
+      "tax": 0
+    },
+    {
+      "state": "NY",
+      "tax": 0
+    },
+    {
+      "state": "NC",
+      "tax": 0
+    },
+    {
+      "state": "ND",
+      "tax": 0
+    },
+    {
+      "state": "OH",
+      "tax": 0
+    },
+    {
+      "state": "OK",
+      "tax": 0
+    },
+    {
+      "state": "OR",
+      "tax": 2310
+    },
+    {
+      "state": "PA",
+      "tax": 0
+    },
+    {
+      "state": "RI",
+      "tax": 0
+    },
+    {
+      "state": "SC",
+      "tax": 142
+    },
+    {
+      "state": "SD",
+      "tax": 0
+    },
+    {
+      "state": "TN",
+      "tax": 0
+    },
+    {
+      "state": "TX",
+      "tax": 0
+    },
+    {
+      "state": "UT",
+      "tax": 1725
+    },
+    {
+      "state": "VT",
+      "tax": 0
+    },
+    {
+      "state": "VA",
+      "tax": 0
+    },
+    {
+      "state": "WA",
+      "tax": 0
+    },
+    {
+      "state": "WV",
+      "tax": 0
+    },
+    {
+      "state": "WI",
+      "tax": 0
+    },
+    {
+      "state": "WY",
+      "tax": 0
+    }
+  ],
+  "bins": [
+    {
+      "below": 1,
+      "label": "None"
+    },
+    {
+      "below": 500,
+      "label": "$1 to $499"
+    },
+    {
+      "below": 1000,
+      "label": "$500 to $999"
+    },
+    {
+      "below": 2000,
+      "label": "$1,000 to $1,999"
+    },
+    {
+      "label": "$2,000 and up"
+    }
+  ],
+  "note": "Below zero: the pay raises federal income tax, which Alabama and Missouri let filers deduct.",
+  "format": {
+    "decimals": 0,
+    "prefix": "$",
+    "separator": true
+  },
+  "source": "Source: PolicyEngine-US 2.105.0 household calculations for 2026; github.com/PolicyEngine/veterans-day-2026."
+}

@@ -1,0 +1,61 @@
+{
+  "type": "bar",
+  "title": "States that tax $45,000 of military retired pay",
+  "subtitle": "Extra state income tax a married couple, ages 67 and 65, owes on $45,000 of military retired pay, with $30,000 of Social Security, 2026",
+  "xKey": "state",
+  "series": [
+    {
+      "key": "tax",
+      "name": "State income tax on the pay",
+      "color": "primary"
+    }
+  ],
+  "data": [
+    {
+      "state": "OR",
+      "tax": 1944
+    },
+    {
+      "state": "DC",
+      "tax": 463
+    },
+    {
+      "state": "HI",
+      "tax": 440
+    },
+    {
+      "state": "DE",
+      "tax": 353
+    },
+    {
+      "state": "KY",
+      "tax": 289
+    },
+    {
+      "state": "MT",
+      "tax": 272
+    },
+    {
+      "state": "ME",
+      "tax": 215
+    },
+    {
+      "state": "IN",
+      "tax": 140
+    },
+    {
+      "state": "AZ",
+      "tax": 50
+    },
+    {
+      "state": "ID",
+      "tax": 10
+    }
+  ],
+  "format": {
+    "decimals": 0,
+    "prefix": "$",
+    "separator": true
+  },
+  "source": "Source: PolicyEngine-US 2.105.0 household calculations for 2026; github.com/PolicyEngine/veterans-day-2026."
+}

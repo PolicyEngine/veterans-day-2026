@@ -5,6 +5,7 @@ status, VA benefits, military retirement pay and active-duty military pay, and
 writes one row per file to outputs/inventory_raw.csv. Run with the pinned
 policyengine-us from requirements.txt so the inventory matches the calculations.
 """
+
 import csv
 import json
 import pathlib
@@ -87,7 +88,9 @@ def scan_parameters():
                 "inputs_named": ";".join(sorted(set(WORD.findall(text)))),
                 "mentions_text": bool(FREE.search(text)),
                 "label": meta.get("label", "") if isinstance(meta, dict) else "",
-                "description": (data.get("description", "") if isinstance(data, dict) else "")[:300],
+                "description": (
+                    data.get("description", "") if isinstance(data, dict) else ""
+                )[:300],
                 "references": " | ".join(
                     r.get("href", "") for r in refs if isinstance(r, dict)
                 )[:500],
@@ -139,8 +142,10 @@ def main():
         },
     }
     (OUT / "inventory_meta.json").write_text(json.dumps(summary, indent=2))
-    print(f"policyengine-us {SOURCE['policyengine_us']}: {len(rows)} files mention veterans "
-          f"or the military; {len(named)} name one of the {len(KEYS)} veteran/military inputs")
+    print(
+        f"policyengine-us {SOURCE['policyengine_us']}: {len(rows)} files mention veterans "
+        f"or the military; {len(named)} name one of the {len(KEYS)} veteran/military inputs"
+    )
 
 
 if __name__ == "__main__":

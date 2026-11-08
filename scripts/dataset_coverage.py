@@ -9,6 +9,7 @@ The file comes from the Hugging Face dataset policyengine/populace-us
 (release populace-us-2024-spm-20260915, the one the policyengine.py bundle
 loads by default).
 """
+
 import hashlib
 import json
 import pathlib
@@ -51,15 +52,21 @@ def main(path: pathlib.Path):
     with pd.HDFStore(path, "r") as store:
         person_columns = list(store.get_storer("/person").attrs.non_index_axes[0][1])
         person = store.select("/person", columns=PERSON_COLUMNS)
-        household = store.select("/household", columns=["household_id", "household_weight"])
-    weight = person.person_household_id.map(household.set_index("household_id").household_weight)
+        household = store.select(
+            "/household", columns=["household_id", "household_weight"]
+        )
+    weight = person.person_household_id.map(
+        household.set_index("household_id").household_weight
+    )
     assert weight.notna().all()
     va = person.veterans_benefits
     receives = va > 0
 
     def people(mask):
-        return {"weighted_millions": round(float(weight[mask].sum()) / 1e6, 2),
-                "records": int(mask.sum())}
+        return {
+            "weighted_millions": round(float(weight[mask].sum()) / 1e6, 2),
+            "records": int(mask.sum()),
+        }
 
     def age_band(lo, hi):
         mask = receives & (person.age >= lo)
@@ -75,17 +82,26 @@ def main(path: pathlib.Path):
         "population_weighted_millions": round(float(weight.sum()) / 1e6, 2),
         "receives_va_payments": people(receives),
         "va_payments_total_billions": round(float((weight * va).sum()) / 1e9, 1),
-        "va_payment_mean_per_recipient": round(float((weight * va)[receives].sum() / weight[receives].sum())),
+        "va_payment_mean_per_recipient": round(
+            float((weight * va)[receives].sum() / weight[receives].sum())
+        ),
         "receives_va_payments_by_age": {
-            (f"{lo}-{hi}" if hi is not None else f"{lo}+"): age_band(lo, hi) for lo, hi in AGE_BANDS
+            (f"{lo}-{hi}" if hi is not None else f"{lo}+"): age_band(lo, hi)
+            for lo, hi in AGE_BANDS
         },
         "is_military": people(person.is_military.astype(bool)),
         "va_health_coverage": people(va_cover),
         "va_health_coverage_and_va_payments": people(va_cover & receives),
         "va_health_coverage_without_va_payments": people(va_cover & ~receives),
-        "tricare_coverage": people(person.has_tricare_health_coverage_at_interview.astype(bool)),
-        "champva_coverage": people(person.has_champva_health_coverage_at_interview.astype(bool)),
-        "columns_present": {c: c in person_columns for c in PERSON_COLUMNS[2:] + WANTED},
+        "tricare_coverage": people(
+            person.has_tricare_health_coverage_at_interview.astype(bool)
+        ),
+        "champva_coverage": people(
+            person.has_champva_health_coverage_at_interview.astype(bool)
+        ),
+        "columns_present": {
+            c: c in person_columns for c in PERSON_COLUMNS[2:] + WANTED
+        },
     }
     OUT.mkdir(exist_ok=True)
     (OUT / "dataset_coverage.json").write_text(json.dumps(result, indent=2))
