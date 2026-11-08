@@ -111,7 +111,7 @@
     },
     {
       "state": "MT",
-      "tax": 1410
+      "tax": 705
     },
     {
       "state": "NE",
@@ -183,7 +183,7 @@
     },
     {
       "state": "UT",
-      "tax": 1725
+      "tax": 390
     },
     {
       "state": "VT",
@@ -237,5 +237,5 @@
     "prefix": "$",
     "separator": true
   },
-  "source": "Source: PolicyEngine-US 2.105.0 household calculations for 2026; github.com/PolicyEngine/veterans-day-2026."
+  "source": "Source: PolicyEngine-US checkout bfeef52eb9 household calculations for 2026; github.com/PolicyEngine/veterans-day-2026."
 }

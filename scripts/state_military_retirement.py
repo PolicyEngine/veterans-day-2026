@@ -87,8 +87,14 @@ STATES = [
 ]
 
 # Married couples filing jointly, no dependents. The retiree is the older
-# spouse, so PolicyEngine makes them the tax-unit head. years_in_military is
-# 20 because North Carolina's deduction requires 20 years of service.
+# spouse, so PolicyEngine makes them the tax-unit head. Each retiree served 20
+# years, from January of `service_start` through December 19 years later, and
+# has drawn retired pay since. North Carolina's deduction requires 20 years.
+SERVICE_YEARS = 20
+# First year of service by retiree age: the 45-year-old served 2001 to 2020,
+# the 67-year-old 1977 to 1996.
+SERVICE_START = {45: 2001, 67: 1977}
+
 ARCHETYPES = {
     "working_45": dict(
         label="Age 45, retired after 20 years, working a second career",
@@ -98,6 +104,7 @@ ARCHETYPES = {
         head_wages=60_000,
         spouse_wages=0,
         social_security=0,
+        service_start=SERVICE_START[45],
     ),
     "retired_67": dict(
         label="Age 67, fully retired, with Social Security",
@@ -107,6 +114,7 @@ ARCHETYPES = {
         head_wages=0,
         spouse_wages=0,
         social_security=30_000,
+        service_start=SERVICE_START[67],
     ),
 }
 
@@ -119,11 +127,31 @@ GRID = [
         head_wages=w,
         spouse_wages=0,
         social_security=(24_000 if a >= 67 else 0),
+        service_start=SERVICE_START[a],
     )
     for a in (45, 67)
     for p in (20_000, 30_000, 50_000, 80_000)
     for w in (0, 60_000)
 ]
+
+# Two states exempt the part of a federal pension earned before a cutoff, and
+# PolicyEngine-US takes the service history as inputs:
+# - Kentucky (Schedule P): the share of service credit months before 1998, for
+#   a retiree of the federal government (ky_service_credit_months_pre_1998,
+#   ky_service_credit_months_post_1997, retired_from_federal_government);
+# - Oregon (ORS 316.680(1)(e), Schedule OR-ASC code 307): the share of the
+#   pension earned before October 1, 1991, as a dollar amount
+#   (or_federal_pension_subtraction).
+KENTUCKY_CUTOFF = (1998, 1)
+OREGON_CUTOFF = (1991, 10)
+
+
+def service_months_before(service_start, cutoff):
+    """Months of service before the first day of the cutoff (year, month)."""
+    start = service_start * 12
+    end = start + SERVICE_YEARS * 12
+    cut = cutoff[0] * 12 + cutoff[1] - 1
+    return max(0, min(end, cut) - start)
 
 
 def situation(arch, scenario):
@@ -140,17 +168,27 @@ def situation(arch, scenario):
             )
         },
     )
+    military = scenario == "military"
+    months = SERVICE_YEARS * 12
+    ky_pre_1998 = service_months_before(arch["service_start"], KENTUCKY_CUTOFF)
+    or_pre_1991_share = (
+        service_months_before(arch["service_start"], OREGON_CUTOFF) / months
+    )
     for i, state in enumerate(STATES):
         head, spouse = f"{state}_head", f"{state}_spouse"
         h = {
             "age": {YEAR: arch["head_age"]},
             "employment_income": {YEAR: arch["head_wages"]},
-            "years_in_military": {YEAR: 20},
-            "military_retirement_pay": {
-                YEAR: arch["pension"] if scenario == "military" else 0
-            },
+            "years_in_military": {YEAR: SERVICE_YEARS},
+            "military_retirement_pay": {YEAR: arch["pension"] if military else 0},
             "taxable_private_pension_income": {
                 YEAR: arch["pension"] if scenario == "civilian" else 0
+            },
+            # Only Kentucky reads these three inputs.
+            "retired_from_federal_government": {YEAR: military},
+            "ky_service_credit_months_pre_1998": {YEAR: ky_pre_1998 if military else 0},
+            "ky_service_credit_months_post_1997": {
+                YEAR: months - ky_pre_1998 if military else 0
             },
         }
         if arch["social_security"]:
@@ -161,7 +199,13 @@ def situation(arch, scenario):
             "employment_income": {YEAR: arch["spouse_wages"]},
         }
         members = [head, spouse]
-        units["tax_units"][f"{state}_tu"] = {"members": members}
+        units["tax_units"][f"{state}_tu"] = {
+            "members": members,
+            # Only Oregon reads this input.
+            "or_federal_pension_subtraction": {
+                YEAR: round(or_pre_1991_share * arch["pension"]) if military else 0
+            },
+        }
         units["families"][f"{state}_f"] = {"members": members}
         units["spm_units"][f"{state}_spm"] = {"members": members}
         units["marital_units"][f"{state}_mu"] = {"members": members}

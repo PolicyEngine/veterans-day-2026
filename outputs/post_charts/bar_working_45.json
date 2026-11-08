@@ -20,14 +20,6 @@
       "tax": 1897
     },
     {
-      "state": "UT",
-      "tax": 1725
-    },
-    {
-      "state": "MT",
-      "tax": 1410
-    },
-    {
       "state": "DE",
       "tax": 1087
     },
@@ -36,8 +28,16 @@
       "tax": 831
     },
     {
+      "state": "MT",
+      "tax": 705
+    },
+    {
       "state": "CO",
       "tax": 660
+    },
+    {
+      "state": "UT",
+      "tax": 390
     },
     {
       "state": "CA",
@@ -57,5 +57,5 @@
     "prefix": "$",
     "separator": true
   },
-  "source": "Source: PolicyEngine-US 2.105.0 household calculations for 2026; github.com/PolicyEngine/veterans-day-2026."
+  "source": "Source: PolicyEngine-US checkout bfeef52eb9 household calculations for 2026; github.com/PolicyEngine/veterans-day-2026."
 }

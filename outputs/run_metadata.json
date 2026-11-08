@@ -2,8 +2,10 @@
   "year": 2026,
   "policyengine_us_installed": "2.105.0",
   "policyengine_core": "3.34.9",
-  "policyengine_us": "2.105.0",
-  "policyengine_us_from": "release",
+  "policyengine_us": "checkout bfeef52eb9",
+  "policyengine_us_from": "checkout",
+  "policyengine_us_branch": "HEAD",
+  "policyengine_us_dirty": false,
   "archetypes": {
     "working_45": {
       "label": "Age 45, retired after 20 years, working a second career",
@@ -12,7 +14,8 @@
       "pension": 30000,
       "head_wages": 60000,
       "spouse_wages": 0,
-      "social_security": 0
+      "social_security": 0,
+      "service_start": 2001
     },
     "retired_67": {
       "label": "Age 67, fully retired, with Social Security",
@@ -21,7 +24,8 @@
       "pension": 45000,
       "head_wages": 0,
       "spouse_wages": 0,
-      "social_security": 30000
+      "social_security": 30000,
+      "service_start": 1977
     }
   }
 }
