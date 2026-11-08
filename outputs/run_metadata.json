@@ -1,0 +1,25 @@
+{
+  "year": 2026,
+  "policyengine_us": "2.105.0",
+  "policyengine_core": "3.34.9",
+  "archetypes": {
+    "working_45": {
+      "label": "Age 45, retired after 20 years, working a second career",
+      "head_age": 45,
+      "spouse_age": 43,
+      "pension": 30000,
+      "head_wages": 60000,
+      "spouse_wages": 0,
+      "social_security": 0
+    },
+    "retired_67": {
+      "label": "Age 67, fully retired, with Social Security",
+      "head_age": 67,
+      "spouse_age": 65,
+      "pension": 45000,
+      "head_wages": 0,
+      "spouse_wages": 0,
+      "social_security": 30000
+    }
+  }
+}
