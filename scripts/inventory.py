@@ -6,15 +6,19 @@ writes one row per file to outputs/inventory_raw.csv. Run with the pinned
 policyengine-us from requirements.txt so the inventory matches the calculations.
 """
 import csv
-import importlib.metadata
+import json
 import pathlib
 import re
+import sys
 
 import policyengine_us
 import yaml
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from model_source import model_source  # noqa: E402
+
 ROOT = pathlib.Path(policyengine_us.__file__).parent
-VERSION = importlib.metadata.version("policyengine-us")
+SOURCE = model_source()
 OUT = pathlib.Path(__file__).resolve().parents[1] / "outputs"
 
 # Input variables that carry veteran or military status or income.
@@ -33,6 +37,14 @@ KEYS = {
     "is_military": "active-duty status",
     "military_basic_pay": "active-duty pay",
     "military_service_income": "active-duty pay",
+    "military_retirement_income": "military retirement pay",
+    "has_va_health_coverage_at_interview": "VA health coverage",
+    "has_tricare_health_coverage_at_interview": "TRICARE coverage",
+    "has_champva_health_coverage_at_interview": "CHAMPVA coverage",
+    "is_snap_alien_military_connected": "military connection (SNAP)",
+    "il_cta_military_service_pass_eligible": "military service pass (Chicago transit)",
+    "me_property_tax_fairness_credit_veterans_cap": "veterans cap (Maine credit)",
+    "ky_military_personal_tax_credits": "military personal credit (Kentucky)",
 }
 WORD = re.compile(r"\b(" + "|".join(map(re.escape, KEYS)) + r")\b")
 FREE = re.compile(r"veteran|military|armed forces|uniformed services", re.I)
@@ -117,8 +129,18 @@ def main():
         w.writeheader()
         w.writerows(rows)
     named = [r for r in rows if r["inputs_named"]]
-    print(f"policyengine-us {VERSION}: {len(rows)} files mention veterans or the military; "
-          f"{len(named)} name one of the {len(KEYS)} veteran/military inputs")
+    summary = {
+        **SOURCE,
+        "files_mentioning_veterans_or_military": len(rows),
+        "files_naming_an_input": len(named),
+        "inputs_searched": len(KEYS),
+        "files_by_input": {
+            k: sum(k in r["inputs_named"].split(";") for r in rows) for k in KEYS
+        },
+    }
+    (OUT / "inventory_meta.json").write_text(json.dumps(summary, indent=2))
+    print(f"policyengine-us {SOURCE['policyengine_us']}: {len(rows)} files mention veterans "
+          f"or the military; {len(named)} name one of the {len(KEYS)} veteran/military inputs")
 
 
 if __name__ == "__main__":

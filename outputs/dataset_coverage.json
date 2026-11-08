@@ -1,0 +1,75 @@
+{
+  "dataset": "populace_us_2024.h5",
+  "sha256": "6496cc4393d4d3c6574f76eca231de5898c803b9067645591fd5c4d3e65aee84",
+  "year": 2024,
+  "population_weighted_millions": 340.08,
+  "receives_va_payments": {
+    "weighted_millions": 5.12,
+    "records": 2389
+  },
+  "va_payments_total_billions": 121.7,
+  "va_payment_mean_per_recipient": 23776,
+  "receives_va_payments_by_age": {
+    "0-17": {
+      "weighted_millions": 0.0,
+      "records": 3
+    },
+    "18-34": {
+      "weighted_millions": 0.68,
+      "records": 227
+    },
+    "35-54": {
+      "weighted_millions": 1.42,
+      "records": 748
+    },
+    "55-64": {
+      "weighted_millions": 0.76,
+      "records": 414
+    },
+    "65-74": {
+      "weighted_millions": 0.94,
+      "records": 423
+    },
+    "75+": {
+      "weighted_millions": 1.31,
+      "records": 574
+    }
+  },
+  "is_military": {
+    "weighted_millions": 0.8,
+    "records": 390
+  },
+  "va_health_coverage": {
+    "weighted_millions": 1.08,
+    "records": 438
+  },
+  "va_health_coverage_and_va_payments": {
+    "weighted_millions": 0.58,
+    "records": 226
+  },
+  "va_health_coverage_without_va_payments": {
+    "weighted_millions": 0.5,
+    "records": 212
+  },
+  "tricare_coverage": {
+    "weighted_millions": 4.6,
+    "records": 1874
+  },
+  "champva_coverage": {
+    "weighted_millions": 0.34,
+    "records": 171
+  },
+  "columns_present": {
+    "veterans_benefits": true,
+    "is_military": true,
+    "has_va_health_coverage_at_interview": true,
+    "has_tricare_health_coverage_at_interview": true,
+    "has_champva_health_coverage_at_interview": true,
+    "military_retirement_pay": false,
+    "military_retirement_pay_survivors": false,
+    "is_veteran": false,
+    "is_permanently_disabled_veteran": false,
+    "is_fully_disabled_service_connected_veteran": false,
+    "years_in_military": false
+  }
+}

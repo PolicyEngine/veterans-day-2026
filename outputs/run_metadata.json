@@ -1,7 +1,9 @@
 {
   "year": 2026,
-  "policyengine_us": "2.105.0",
+  "policyengine_us_installed": "2.105.0",
   "policyengine_core": "3.34.9",
+  "policyengine_us": "2.105.0",
+  "policyengine_us_from": "release",
   "archetypes": {
     "working_45": {
       "label": "Age 45, retired after 20 years, working a second career",

@@ -19,12 +19,15 @@ as separate households inside one simulation per archetype and scenario.
 """
 
 import argparse
-import importlib.metadata
 import json
 import pathlib
+import sys
 
 import pandas as pd
 from policyengine_us import Simulation
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from model_source import model_source  # noqa: E402
 
 YEAR = 2026
 OUT = pathlib.Path(__file__).resolve().parents[1] / "outputs"
@@ -114,9 +117,7 @@ def main():
     parser.add_argument("--grid", action="store_true", help="also run the appendix grid")
     args = parser.parse_args()
     OUT.mkdir(exist_ok=True)
-    meta = {"year": YEAR, "policyengine_us": importlib.metadata.version("policyengine-us"),
-            "policyengine_core": importlib.metadata.version("policyengine-core"),
-            "archetypes": ARCHETYPES}
+    meta = {"year": YEAR, **model_source(), "archetypes": ARCHETYPES}
     frames = []
     for key, arch in ARCHETYPES.items():
         df = run(arch)
