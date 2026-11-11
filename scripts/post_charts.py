@@ -3,7 +3,8 @@
 Reads outputs/state_military_retirement_2026.csv and outputs/run_metadata.json
 and writes outputs/post_charts/*.json, one PolicyEngine blog ```chart spec
 per file (types "stateMap" and "bar", as the website's BlogChart.tsx parses
-them). Rerun after every calculation so the post's numbers match the CSV.
+them; the bars run horizontally, which needs the "orientation" and "legend"
+fields that PolicyEngine/policyengine-app-v2#1523 adds). Rerun after every calculation so the post's numbers match the CSV.
 """
 
 import json
@@ -15,6 +16,22 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs" / "post_charts"
 
 NO_INCOME_TAX = {"AK", "FL", "NV", "NH", "SD", "TN", "TX", "WA", "WY"}
+
+STATE_NAMES = {
+    "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas",
+    "CA": "California", "CO": "Colorado", "CT": "Connecticut", "DE": "Delaware",
+    "DC": "District of Columbia", "FL": "Florida", "GA": "Georgia", "HI": "Hawaii",
+    "ID": "Idaho", "IL": "Illinois", "IN": "Indiana", "IA": "Iowa", "KS": "Kansas",
+    "KY": "Kentucky", "LA": "Louisiana", "ME": "Maine", "MD": "Maryland",
+    "MA": "Massachusetts", "MI": "Michigan", "MN": "Minnesota", "MS": "Mississippi",
+    "MO": "Missouri", "MT": "Montana", "NE": "Nebraska", "NV": "Nevada",
+    "NH": "New Hampshire", "NJ": "New Jersey", "NM": "New Mexico", "NY": "New York",
+    "NC": "North Carolina", "ND": "North Dakota", "OH": "Ohio", "OK": "Oklahoma",
+    "OR": "Oregon", "PA": "Pennsylvania", "RI": "Rhode Island", "SC": "South Carolina",
+    "SD": "South Dakota", "TN": "Tennessee", "TX": "Texas", "UT": "Utah",
+    "VT": "Vermont", "VA": "Virginia", "WA": "Washington", "WV": "West Virginia",
+    "WI": "Wisconsin", "WY": "Wyoming",
+}
 
 TAX_BINS = [
     {"below": 1, "label": "$0 or less"},
@@ -61,16 +78,20 @@ def taxing_states_bar(df: pd.DataFrame, arch: dict, meta: dict, title: str) -> d
     taxed = df[df.tax_on_military_pay >= 1].sort_values(
         "tax_on_military_pay", ascending=False
     )
+    # Horizontal bars put the dollars on the x-axis; the subtitle names the
+    # one series, so the chart needs no legend.
     return {
         "type": "bar",
         "title": title,
         "subtitle": arch["subtitle"],
+        "orientation": "horizontal",
+        "legend": False,
         "xKey": "state",
         "series": [
             {"key": "tax", "name": "Extra state income tax", "color": "primary"}
         ],
         "data": [
-            {"state": r.state, "tax": round(float(r.tax_on_military_pay))}
+            {"state": STATE_NAMES[r.state], "tax": round(float(r.tax_on_military_pay))}
             for r in taxed.itertuples()
         ],
         "format": {"decimals": 0, "prefix": "$", "separator": True},

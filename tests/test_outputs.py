@@ -8,10 +8,14 @@ import json
 import pathlib
 import re
 
+import sys
+
 import pandas as pd
 import pytest
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from post_charts import STATE_NAMES  # noqa: E402
 RESULTS = pd.read_csv(ROOT / "outputs" / "state_military_retirement_2026.csv")
 META = json.loads((ROOT / "outputs" / "run_metadata.json").read_text())
 CHARTS = ROOT / "outputs" / "post_charts"
@@ -68,11 +72,14 @@ def test_bar_chart_lists_exactly_the_states_where_the_couple_owes_more(arch):
     spec = json.loads((CHARTS / f"bar_{arch}.json").read_text())
     rows = RESULTS[RESULTS.archetype == arch].set_index("state")
     owes_more = rows[rows.tax_on_military_pay >= 1]
-    assert [r["state"] for r in spec["data"]] == list(
+    # The bars name each state in full; map the names back to the CSV's codes.
+    assert len(set(STATE_NAMES.values())) == len(STATE_NAMES) == 51
+    code = {name: abbr for abbr, name in STATE_NAMES.items()}
+    assert [code[r["state"]] for r in spec["data"]] == list(
         owes_more.sort_values("tax_on_military_pay", ascending=False).index
     )
     for row in spec["data"]:
-        assert row["tax"] == round(float(rows.tax_on_military_pay[row["state"]]))
+        assert row["tax"] == round(float(rows.tax_on_military_pay[code[row["state"]]]))
 
 
 def test_post_embeds_the_current_chart_specs():
