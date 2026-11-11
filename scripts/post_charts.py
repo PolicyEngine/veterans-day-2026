@@ -178,9 +178,9 @@ def main():
             "note": negative_note(df[df.archetype == "retired_67"]),
             "bar_subtitle": (
                 "Extra federal and state income tax a married couple, ages 67 "
-                "and 65, owes because of $45,000 of military retired pay, with "
-                "$30,000 of Social Security, in the {n} where the pay "
-                "raises state income tax, 2026"
+                "and 65, owes when one spouse receives $45,000 of military "
+                "retired pay on top of $30,000 of Social Security, in the {n} "
+                "where the pay raises state income tax, 2026"
             ),
         },
     }
@@ -197,7 +197,7 @@ def main():
                 sub,
                 {**arch, "subtitle": arch["bar_subtitle"]},
                 meta,
-                f"Federal and state income tax on {pay} of military retired pay",
+                f"How {pay} of military retired pay raises federal and state income tax",
             ),
         }
         for name, spec in specs.items():
