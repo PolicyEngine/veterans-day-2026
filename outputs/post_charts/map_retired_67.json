@@ -1,6 +1,6 @@
 {
   "type": "stateMap",
-  "title": "State income tax on $45,000 of military retired pay",
+  "title": "How $45,000 of military retired pay changes state income tax",
   "subtitle": "Extra state income tax a married couple, ages 67 and 65, owes on $45,000 of military retired pay, with $30,000 of Social Security, 2026",
   "stateKey": "state",
   "valueKey": "tax",
@@ -35,7 +35,7 @@
     },
     {
       "state": "DC",
-      "tax": 463
+      "tax": 0
     },
     {
       "state": "GA",
@@ -75,7 +75,7 @@
     },
     {
       "state": "ME",
-      "tax": 215
+      "tax": 220
     },
     {
       "state": "MD",
@@ -103,7 +103,7 @@
     },
     {
       "state": "MT",
-      "tax": 272
+      "tax": 258
     },
     {
       "state": "NE",

@@ -6,15 +6,11 @@
   "series": [
     {
       "key": "tax",
-      "name": "State income tax on the pay",
+      "name": "Extra state income tax",
       "color": "primary"
     }
   ],
   "data": [
-    {
-      "state": "DC",
-      "tax": 463
-    },
     {
       "state": "HI",
       "tax": 440
@@ -25,7 +21,7 @@
     },
     {
       "state": "MT",
-      "tax": 272
+      "tax": 258
     },
     {
       "state": "VT",
@@ -33,7 +29,7 @@
     },
     {
       "state": "ME",
-      "tax": 215
+      "tax": 220
     },
     {
       "state": "NM",

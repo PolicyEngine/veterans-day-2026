@@ -1,9 +1,5 @@
 # Veterans Day 2026: military retired pay and veteran rules in PolicyEngine-US
 
-> **Work in progress.** We are checking every state's result against its law and
-> tax forms. Until that check finishes, treat the numbers here as preliminary and
-> don't cite them.
-
 This repository asks three questions of [PolicyEngine-US](https://github.com/PolicyEngine/policyengine-us):
 
 1. **How much state income tax does each state levy on military retired pay in 2026?**
@@ -117,10 +113,26 @@ VA reports by fiscal year.
 
 ## Reproduce
 
+The post's numbers come from PolicyEngine-US commit
+[`1ef50f2988`](https://github.com/PolicyEngine/policyengine-us/tree/vd26-run-2026-11-11)
+(branch `vd26-run-2026-11-11`). It merges ten fixes still in review onto main
+`3386304d28`:
+[#10702](https://github.com/PolicyEngine/policyengine-us/pull/10702) (Utah),
+[#10713](https://github.com/PolicyEngine/policyengine-us/pull/10713) and
+[#10805](https://github.com/PolicyEngine/policyengine-us/pull/10805) (Montana),
+[#10714](https://github.com/PolicyEngine/policyengine-us/pull/10714) (Michigan),
+[#10715](https://github.com/PolicyEngine/policyengine-us/pull/10715) and
+[#10717](https://github.com/PolicyEngine/policyengine-us/pull/10717) (Idaho),
+[#10716](https://github.com/PolicyEngine/policyengine-us/pull/10716) (Delaware),
+[#10806](https://github.com/PolicyEngine/policyengine-us/pull/10806) (DC),
+[#10807](https://github.com/PolicyEngine/policyengine-us/pull/10807) (Maine)
+and branch `fix-ca-2026-indexing` (California's 2026 indexing).
+
 ```bash
+git clone --branch vd26-run-2026-11-11 https://github.com/PolicyEngine/policyengine-us ../policyengine-us-vd26
 uv venv --python 3.12 .venv
 VIRTUAL_ENV=.venv uv pip install -r requirements.txt
-.venv/bin/python scripts/state_military_retirement.py --grid
+PYTHONPATH=../policyengine-us-vd26 .venv/bin/python scripts/state_military_retirement.py --grid
 .venv/bin/python scripts/inventory.py
 .venv/bin/python scripts/dataset_coverage.py <path to populace_us_2024.h5>
 .venv/bin/python scripts/post_charts.py

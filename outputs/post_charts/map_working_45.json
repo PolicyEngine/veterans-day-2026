@@ -1,6 +1,6 @@
 {
   "type": "stateMap",
-  "title": "State income tax on $30,000 of military retired pay",
+  "title": "How $30,000 of military retired pay changes state income tax",
   "subtitle": "Extra state income tax a married couple owes when one spouse, age 45, receives $30,000 of military retired pay on top of $60,000 of wages, 2026",
   "stateKey": "state",
   "valueKey": "tax",
@@ -19,7 +19,7 @@
     },
     {
       "state": "CA",
-      "tax": 292
+      "tax": 278
     },
     {
       "state": "CO",
@@ -35,7 +35,7 @@
     },
     {
       "state": "DC",
-      "tax": 1897
+      "tax": 1900
     },
     {
       "state": "GA",
@@ -75,7 +75,7 @@
     },
     {
       "state": "ME",
-      "tax": 55
+      "tax": 60
     },
     {
       "state": "MD",
@@ -195,7 +195,7 @@
       "label": "$2,000 and up"
     }
   ],
-  "note": "Alabama and Missouri let filers deduct federal income tax, which the pay raises, so the pay lowers their state income tax. States marked with a dash levy no broad income tax.",
+  "note": "Alabama and Missouri let filers deduct federal income tax, which rises with the pay, so the couple owes less state income tax there with the pay than without it. States marked with a dash levy no broad income tax.",
   "format": {
     "decimals": 0,
     "prefix": "$",

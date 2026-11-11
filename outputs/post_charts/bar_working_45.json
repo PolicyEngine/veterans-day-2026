@@ -6,7 +6,7 @@
   "series": [
     {
       "key": "tax",
-      "name": "State income tax on the pay",
+      "name": "Extra state income tax",
       "color": "primary"
     }
   ],
@@ -17,7 +17,7 @@
     },
     {
       "state": "DC",
-      "tax": 1897
+      "tax": 1900
     },
     {
       "state": "DE",
@@ -41,7 +41,7 @@
     },
     {
       "state": "CA",
-      "tax": 292
+      "tax": 278
     },
     {
       "state": "SC",
@@ -49,7 +49,7 @@
     },
     {
       "state": "ME",
-      "tax": 55
+      "tax": 60
     }
   ],
   "format": {
