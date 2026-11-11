@@ -11,6 +11,7 @@ Placeholders:
   {{tax:ARCH:ST}}           |tax_on_military_pay| for a state, as "$1,234"
   {{nstates_plus_dc:ARCH}}  the number of states, as a word, other than DC, whose
                             tax_on_military_pay is $1 or more; fails unless DC's is too
+  {{nstates:ARCH}}          the same count; fails if DC's is $1 or more
   {{maxstate:ARCH}} {{maxtax:ARCH}} {{minstate:ARCH}} {{mintax:ARCH}}
                             the state (by name) and amount with the largest and
                             smallest tax_on_military_pay of $1 or more
@@ -127,7 +128,7 @@ EXPECTED = {
         "less": {"AL", "MO"},
     },
     "retired_67": {
-        "more": {"AZ", "DE", "DC", "HI", "ID", "IN", "ME", "MT", "NM", "OK", "VT"},
+        "more": {"AZ", "DE", "HI", "ID", "IN", "ME", "MT", "NM", "OK", "VT"},
         "less": set(),
     },
 }
@@ -174,6 +175,12 @@ class Renderer:
             raise ValueError(f"{arch}: the text names DC, but DC's tax is under $1")
         return NUMBER_WORDS[len(taxed - {"DC"})]
 
+    def nstates(self, arch: str) -> str:
+        taxed = set(self.taxed(arch).state)
+        if "DC" in taxed:
+            raise ValueError(f"{arch}: the text counts states only, but DC's tax is $1 or more")
+        return NUMBER_WORDS[len(taxed)]
+
     def extreme(self, arch: str, largest: bool) -> pd.Series:
         taxed = self.taxed(arch).sort_values("tax_on_military_pay")
         return taxed.iloc[-1] if largest else taxed.iloc[0]
@@ -211,6 +218,8 @@ class Renderer:
             return self.tax(*parts)
         if kind == "nstates_plus_dc":
             return self.nstates_plus_dc(*parts)
+        if kind == "nstates":
+            return self.nstates(*parts)
         if kind in ("maxstate", "minstate"):
             return STATE_NAMES[self.extreme(*parts, kind == "maxstate").state]
         if kind in ("maxtax", "mintax"):

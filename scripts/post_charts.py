@@ -67,7 +67,7 @@ def taxing_states_bar(df: pd.DataFrame, arch: dict, meta: dict, title: str) -> d
         "subtitle": arch["subtitle"],
         "xKey": "state",
         "series": [
-            {"key": "tax", "name": "State income tax on the pay", "color": "primary"}
+            {"key": "tax", "name": "Extra state income tax", "color": "primary"}
         ],
         "data": [
             {"state": r.state, "tax": round(float(r.tax_on_military_pay))}
@@ -94,9 +94,9 @@ def negative_note(df: pd.DataFrame) -> str:
     assert not unknown, f"name these states and check why their tax falls: {unknown}"
     listed = " and ".join(names[s] for s in below)
     return (
-        f"{listed} let filers deduct federal income tax, which the pay raises, "
-        "so the pay lowers their state income tax. States marked with a dash "
-        "levy no broad income tax."
+        f"{listed} let filers deduct federal income tax, which rises with the "
+        "pay, so the couple owes less state income tax there with the pay than "
+        "without it. States marked with a dash levy no broad income tax."
     )
 
 
@@ -133,7 +133,7 @@ def main():
         pay = f"${archetypes[key]['pension']:,}"
         specs = {
             f"map_{key}": state_map(
-                sub, arch, meta, f"State income tax on {pay} of military retired pay"
+                sub, arch, meta, f"How {pay} of military retired pay changes state income tax"
             ),
             f"bar_{key}": taxing_states_bar(
                 sub,
