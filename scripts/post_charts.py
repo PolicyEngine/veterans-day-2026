@@ -121,6 +121,10 @@ def negative_note(df: pd.DataFrame) -> str:
     )
 
 
+# The charts the post embeds, numbered in the order they appear.
+FIGURE_LABELS = {"map_working_45": "Figure 1", "bar_retired_67": "Figure 2"}
+
+
 def main():
     df = pd.read_csv(ROOT / "outputs" / "state_military_retirement_2026.csv")
     meta = json.loads((ROOT / "outputs" / "run_metadata.json").read_text())
@@ -164,6 +168,8 @@ def main():
             ),
         }
         for name, spec in specs.items():
+            if name in FIGURE_LABELS:
+                spec["title"] = f"{FIGURE_LABELS[name]}: {spec['title']}"
             (OUT / f"{name}.json").write_text(json.dumps(spec, indent=2) + "\n")
     print(
         f"wrote {len(list(OUT.glob('*.json')))} chart specs to {OUT.relative_to(ROOT)}"
