@@ -143,9 +143,9 @@ def main():
         },
         "retired_67": {
             "subtitle": (
-                "Extra state income tax a married couple, ages 67 and 65, owes "
-                "because of $45,000 of military retired pay, with $30,000 of Social "
-                "Security, 2026"
+                "Extra state income tax a married couple owes when one spouse, "
+                "age 67, receives $45,000 of military retired pay on top of "
+                "$30,000 of Social Security, 2026"
             ),
             "note": negative_note(df[df.archetype == "retired_67"]),
         },
