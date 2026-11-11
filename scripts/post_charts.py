@@ -96,7 +96,7 @@ def negative_note(df: pd.DataFrame) -> str:
     return (
         f"{listed} let filers deduct federal income tax, which rises with the "
         "pay, so the couple owes less state income tax there with the pay than "
-        "without it. States marked with a dash levy no broad income tax."
+        "without it. A dash marks a state with no broad income tax."
     )
 
 
@@ -120,7 +120,7 @@ def main():
         "retired_67": {
             "subtitle": (
                 "Extra state income tax a married couple, ages 67 and 65, owes "
-                "on $45,000 of military retired pay, with $30,000 of Social "
+                "because of $45,000 of military retired pay, with $30,000 of Social "
                 "Security, 2026"
             ),
             "note": negative_note(df[df.archetype == "retired_67"]),

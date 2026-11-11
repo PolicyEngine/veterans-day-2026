@@ -195,7 +195,7 @@
       "label": "$2,000 and up"
     }
   ],
-  "note": "Alabama and Missouri let filers deduct federal income tax, which rises with the pay, so the couple owes less state income tax there with the pay than without it. States marked with a dash levy no broad income tax.",
+  "note": "Alabama and Missouri let filers deduct federal income tax, which rises with the pay, so the couple owes less state income tax there with the pay than without it. A dash marks a state with no broad income tax.",
   "format": {
     "decimals": 0,
     "prefix": "$",
