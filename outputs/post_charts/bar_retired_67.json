@@ -7,66 +7,66 @@
   "xKey": "state",
   "series": [
     {
-      "key": "state_tax",
-      "name": "State income tax",
-      "color": "primary"
-    },
-    {
       "key": "federal_tax",
       "name": "Federal income tax",
       "color": "quinary"
+    },
+    {
+      "key": "state_tax",
+      "name": "State income tax",
+      "color": "primary"
     }
   ],
   "data": [
     {
       "state": "Hawaii",
-      "state_tax": 440,
-      "federal_tax": 1710
+      "federal_tax": 1710,
+      "state_tax": 440
     },
     {
       "state": "Delaware",
-      "state_tax": 353,
-      "federal_tax": 1710
+      "federal_tax": 1710,
+      "state_tax": 353
     },
     {
       "state": "Montana",
-      "state_tax": 258,
-      "federal_tax": 1710
+      "federal_tax": 1710,
+      "state_tax": 258
     },
     {
       "state": "Vermont",
-      "state_tax": 250,
-      "federal_tax": 1710
+      "federal_tax": 1710,
+      "state_tax": 250
     },
     {
       "state": "Maine",
-      "state_tax": 220,
-      "federal_tax": 1710
+      "federal_tax": 1710,
+      "state_tax": 220
     },
     {
       "state": "New Mexico",
-      "state_tax": 152,
-      "federal_tax": 1710
+      "federal_tax": 1710,
+      "state_tax": 152
     },
     {
       "state": "Indiana",
-      "state_tax": 140,
-      "federal_tax": 1710
+      "federal_tax": 1710,
+      "state_tax": 140
     },
     {
       "state": "Oklahoma",
-      "state_tax": 80,
-      "federal_tax": 1710
+      "federal_tax": 1710,
+      "state_tax": 80
     },
     {
       "state": "Arizona",
-      "state_tax": 50,
-      "federal_tax": 1710
+      "federal_tax": 1710,
+      "state_tax": 50
     },
     {
       "state": "Idaho",
-      "state_tax": 10,
-      "federal_tax": 1710
+      "federal_tax": 1710,
+      "state_tax": 10
     }
   ],
   "format": {

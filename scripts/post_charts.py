@@ -91,10 +91,10 @@ def places(states: set) -> str:
 
 
 def taxing_states_bar(df: pd.DataFrame, arch: dict, meta: dict, title: str) -> dict:
-    """Stacked horizontal bars: the state tax the pay adds, then the federal tax.
+    """Stacked horizontal bars: the federal tax the pay adds, then the state tax.
 
-    The state segment starts at zero so readers can compare it across states;
-    the federal segment sits on top, and each bar's label gives the total.
+    The federal segment starts at zero and the state segment follows it; each
+    bar's label gives the total.
     """
     taxed = df[df.tax_on_military_pay >= 1].sort_values(
         "tax_on_military_pay", ascending=False
@@ -108,14 +108,14 @@ def taxing_states_bar(df: pd.DataFrame, arch: dict, meta: dict, title: str) -> d
         "stacked": True,
         "xKey": "state",
         "series": [
-            {"key": "state_tax", "name": "State income tax", "color": "primary"},
             {"key": "federal_tax", "name": "Federal income tax", "color": "quinary"},
+            {"key": "state_tax", "name": "State income tax", "color": "primary"},
         ],
         "data": [
             {
                 "state": STATE_NAMES[r.state],
-                "state_tax": round(float(r.tax_on_military_pay)),
                 "federal_tax": round(float(f)),
+                "state_tax": round(float(r.tax_on_military_pay)),
             }
             for r, f in zip(taxed.itertuples(), federal)
         ],

@@ -7,66 +7,66 @@
   "xKey": "state",
   "series": [
     {
-      "key": "state_tax",
-      "name": "State income tax",
-      "color": "primary"
-    },
-    {
       "key": "federal_tax",
       "name": "Federal income tax",
       "color": "quinary"
+    },
+    {
+      "key": "state_tax",
+      "name": "State income tax",
+      "color": "primary"
     }
   ],
   "data": [
     {
       "state": "Oregon",
-      "state_tax": 2310,
-      "federal_tax": 3600
+      "federal_tax": 3600,
+      "state_tax": 2310
     },
     {
       "state": "District of Columbia",
-      "state_tax": 1900,
-      "federal_tax": 3600
+      "federal_tax": 3600,
+      "state_tax": 1900
     },
     {
       "state": "Delaware",
-      "state_tax": 1087,
-      "federal_tax": 3600
+      "federal_tax": 3600,
+      "state_tax": 1087
     },
     {
       "state": "Maryland",
-      "state_tax": 831,
-      "federal_tax": 3600
+      "federal_tax": 3600,
+      "state_tax": 831
     },
     {
       "state": "Montana",
-      "state_tax": 705,
-      "federal_tax": 3600
+      "federal_tax": 3600,
+      "state_tax": 705
     },
     {
       "state": "Colorado",
-      "state_tax": 660,
-      "federal_tax": 3600
+      "federal_tax": 3600,
+      "state_tax": 660
     },
     {
       "state": "Utah",
-      "state_tax": 390,
-      "federal_tax": 3600
+      "federal_tax": 3600,
+      "state_tax": 390
     },
     {
       "state": "California",
-      "state_tax": 278,
-      "federal_tax": 3600
+      "federal_tax": 3600,
+      "state_tax": 278
     },
     {
       "state": "South Carolina",
-      "state_tax": 142,
-      "federal_tax": 3600
+      "federal_tax": 3600,
+      "state_tax": 142
     },
     {
       "state": "Maine",
-      "state_tax": 60,
-      "federal_tax": 3600
+      "federal_tax": 3600,
+      "state_tax": 60
     }
   ],
   "format": {
