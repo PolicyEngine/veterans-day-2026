@@ -1,0 +1,1114 @@
+{
+  "working_45": {
+    "household_benefits": {
+      "AL": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "AK": {
+        "none": 400.0,
+        "military": 400.0
+      },
+      "AZ": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "AR": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "CA": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "CO": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "CT": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "DE": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "DC": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "FL": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "GA": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "HI": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "ID": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "IL": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "IN": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "IA": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "KS": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "KY": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "LA": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "ME": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "MD": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "MA": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "MI": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "MN": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "MS": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "MO": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "MT": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "NE": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "NV": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "NH": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "NJ": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "NM": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "NY": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "NC": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "ND": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "OH": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "OK": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "OR": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "PA": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "RI": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "SC": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "SD": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "TN": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "TX": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "UT": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "VT": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "VA": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "WA": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "WV": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "WI": {
+        "none": 0.0,
+        "military": 0.0
+      },
+      "WY": {
+        "none": 0.0,
+        "military": 0.0
+      }
+    },
+    "household_net_income": {
+      "AL": {
+        "none": 50192.0,
+        "military": 76772.0
+      },
+      "AK": {
+        "none": 54730.0,
+        "military": 81130.0
+      },
+      "AZ": {
+        "none": 51875.0,
+        "military": 78275.0
+      },
+      "AR": {
+        "none": 50962.0,
+        "military": 77362.0
+      },
+      "CA": {
+        "none": 51365.12,
+        "military": 77486.4
+      },
+      "CO": {
+        "none": 51082.8,
+        "military": 76822.8
+      },
+      "CT": {
+        "none": 50776.0,
+        "military": 77176.0
+      },
+      "DE": {
+        "none": 49967.25,
+        "military": 75280.5
+      },
+      "DC": {
+        "none": 50970.0,
+        "military": 75470.0
+      },
+      "FL": {
+        "none": 52570.0,
+        "military": 78970.0
+      },
+      "GA": {
+        "none": 51073.0,
+        "military": 77473.0
+      },
+      "HI": {
+        "none": 51254.03,
+        "military": 77654.03
+      },
+      "ID": {
+        "none": 51918.12,
+        "military": 78318.12
+      },
+      "IL": {
+        "none": 49858.57,
+        "military": 76245.58
+      },
+      "IN": {
+        "none": 49931.0,
+        "military": 76331.0
+      },
+      "IA": {
+        "none": 51593.6,
+        "military": 77993.6
+      },
+      "KS": {
+        "none": 50831.12,
+        "military": 77231.12
+      },
+      "KY": {
+        "none": 50587.6,
+        "military": 76987.6
+      },
+      "LA": {
+        "none": 51540.28,
+        "military": 77940.28
+      },
+      "ME": {
+        "none": 51280.2,
+        "military": 77620.2
+      },
+      "MD": {
+        "none": 48985.35,
+        "military": 74023.85
+      },
+      "MA": {
+        "none": 49834.0,
+        "military": 76234.0
+      },
+      "MI": {
+        "none": 50521.5,
+        "military": 76921.5
+      },
+      "MN": {
+        "none": 50733.1,
+        "military": 77133.1
+      },
+      "MS": {
+        "none": 51234.0,
+        "military": 77634.0
+      },
+      "MO": {
+        "none": 51464.05,
+        "military": 77889.44
+      },
+      "MT": {
+        "none": 51263.4,
+        "military": 76958.4
+      },
+      "NE": {
+        "none": 51523.89,
+        "military": 77923.89
+      },
+      "NV": {
+        "none": 52570.0,
+        "military": 78970.0
+      },
+      "NH": {
+        "none": 52570.0,
+        "military": 78970.0
+      },
+      "NJ": {
+        "none": 51126.6,
+        "military": 77526.6
+      },
+      "NM": {
+        "none": 51785.6,
+        "military": 78185.6
+      },
+      "NY": {
+        "none": 50238.8,
+        "military": 76638.8
+      },
+      "NC": {
+        "none": 51152.95,
+        "military": 77532.7
+      },
+      "ND": {
+        "none": 52570.0,
+        "military": 78970.0
+      },
+      "OH": {
+        "none": 51422.62,
+        "military": 77822.62
+      },
+      "OK": {
+        "none": 50927.4,
+        "military": 77310.6
+      },
+      "OR": {
+        "none": 48817.16,
+        "military": 72907.16
+      },
+      "PA": {
+        "none": 50663.0,
+        "military": 77063.0
+      },
+      "RI": {
+        "none": 50893.75,
+        "military": 77293.75
+      },
+      "SC": {
+        "none": 51973.0,
+        "military": 78231.29
+      },
+      "SD": {
+        "none": 52570.0,
+        "military": 78970.0
+      },
+      "TN": {
+        "none": 52570.0,
+        "military": 78970.0
+      },
+      "TX": {
+        "none": 52570.0,
+        "military": 78970.0
+      },
+      "UT": {
+        "none": 51536.27,
+        "military": 77546.27
+      },
+      "VT": {
+        "none": 51378.4,
+        "military": 77778.4
+      },
+      "VA": {
+        "none": 50490.7,
+        "military": 76890.7
+      },
+      "WA": {
+        "none": 51737.7,
+        "military": 78137.7
+      },
+      "WV": {
+        "none": 50788.3,
+        "military": 77188.3
+      },
+      "WI": {
+        "none": 51040.48,
+        "military": 77440.48
+      },
+      "WY": {
+        "none": 52570.0,
+        "military": 78970.0
+      }
+    },
+    "_received_unchanged": {
+      "ak_energy_relief": [
+        "AK"
+      ]
+    }
+  },
+  "retired_67": {
+    "household_benefits": {
+      "AL": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "AK": {
+        "none": 32515.0,
+        "military": 31702.0
+      },
+      "AZ": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "AR": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "CA": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "CO": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "CT": {
+        "none": 33975.6,
+        "military": 33684.6
+      },
+      "DE": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "DC": {
+        "none": 31662.0,
+        "military": 31302.0
+      },
+      "FL": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "GA": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "HI": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "ID": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "IL": {
+        "none": 30291.0,
+        "military": 30000.0
+      },
+      "IN": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "IA": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "KS": {
+        "none": 30000.0,
+        "military": 30000.0
+      },
+      "KY": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "LA": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "ME": {
+        "none": 31608.0,
+        "military": 31302.0
+      },
+      "MD": {
+        "none": 31782.0,
+        "military": 31302.0
+      },
+      "MA": {
+        "none": 30291.0,
+        "military": 30000.0
+      },
+      "MI": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "MN": {
+        "none": 43962.0,
+        "military": 31302.0
+      },
+      "MS": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "MO": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "MT": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "NE": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "NV": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "NH": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "NJ": {
+        "none": 32442.0,
+        "military": 31302.0
+      },
+      "NM": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "NY": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "NC": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "ND": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "OH": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "OK": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "OR": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "PA": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "RI": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "SC": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "SD": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "TN": {
+        "none": 31302.0,
+        "military": 31302.0
+      },
+      "TX": {
+        "none": 30291.0,
+        "military": 30000.0
+      },
+      "UT": {
+        "none": 31371.0,
+        "military": 31371.0
+      },
+      "VT": {
+        "none": 31608.0,
+        "military": 31302.0
+      },
+      "VA": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "WA": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "WV": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "WI": {
+        "none": 31593.0,
+        "military": 31302.0
+      },
+      "WY": {
+        "none": 31302.0,
+        "military": 31302.0
+      }
+    },
+    "household_net_income": {
+      "AL": {
+        "none": 31302.0,
+        "military": 74592.0
+      },
+      "AK": {
+        "none": 34515.0,
+        "military": 76622.0
+      },
+      "AZ": {
+        "none": 31643.0,
+        "military": 74592.0
+      },
+      "AR": {
+        "none": 31302.0,
+        "military": 74592.0
+      },
+      "CA": {
+        "none": 31592.0,
+        "military": 74590.0
+      },
+      "CO": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "CT": {
+        "none": 33975.6,
+        "military": 76974.6
+      },
+      "DE": {
+        "none": 31593.0,
+        "military": 74239.0
+      },
+      "DC": {
+        "none": 31662.0,
+        "military": 74592.0
+      },
+      "FL": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "GA": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "HI": {
+        "none": 31742.0,
+        "military": 74592.0
+      },
+      "ID": {
+        "none": 31612.0,
+        "military": 74892.0
+      },
+      "IL": {
+        "none": 30288.0,
+        "military": 73259.0
+      },
+      "IN": {
+        "none": 31442.0,
+        "military": 74592.0
+      },
+      "IA": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "KS": {
+        "none": 30000.0,
+        "military": 73290.0
+      },
+      "KY": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "LA": {
+        "none": 31302.0,
+        "military": 74592.0
+      },
+      "ME": {
+        "none": 31828.0,
+        "military": 74592.0
+      },
+      "MD": {
+        "none": 31782.0,
+        "military": 74592.0
+      },
+      "MA": {
+        "none": 30291.0,
+        "military": 73290.0
+      },
+      "MI": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "MN": {
+        "none": 43962.0,
+        "military": 74592.0
+      },
+      "MS": {
+        "none": 31302.0,
+        "military": 74592.0
+      },
+      "MO": {
+        "none": 31302.0,
+        "military": 74592.0
+      },
+      "MT": {
+        "none": 31593.0,
+        "military": 74334.44
+      },
+      "NE": {
+        "none": 31302.0,
+        "military": 74592.0
+      },
+      "NV": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "NH": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "NJ": {
+        "none": 32442.0,
+        "military": 74592.0
+      },
+      "NM": {
+        "none": 31745.0,
+        "military": 74592.0
+      },
+      "NY": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "NC": {
+        "none": 31592.0,
+        "military": 74548.4
+      },
+      "ND": {
+        "none": 31302.0,
+        "military": 74592.0
+      },
+      "OH": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "OK": {
+        "none": 31382.0,
+        "military": 74555.82
+      },
+      "OR": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "PA": {
+        "none": 31587.0,
+        "military": 74586.0
+      },
+      "RI": {
+        "none": 31302.0,
+        "military": 74592.0
+      },
+      "SC": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "SD": {
+        "none": 31302.0,
+        "military": 74592.0
+      },
+      "TN": {
+        "none": 31302.0,
+        "military": 74592.0
+      },
+      "TX": {
+        "none": 30291.0,
+        "military": 73290.0
+      },
+      "UT": {
+        "none": 31371.0,
+        "military": 74661.0
+      },
+      "VT": {
+        "none": 31858.0,
+        "military": 74592.0
+      },
+      "VA": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "WA": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "WV": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "WI": {
+        "none": 31593.0,
+        "military": 74592.0
+      },
+      "WY": {
+        "none": 31302.0,
+        "military": 74592.0
+      }
+    },
+    "_received_unchanged": {
+      "ak_energy_relief": [
+        "AK"
+      ],
+      "commodity_supplemental_food_program": [
+        "AL",
+        "AK",
+        "AZ",
+        "AR",
+        "CA",
+        "CO",
+        "CT",
+        "DE",
+        "DC",
+        "FL",
+        "GA",
+        "HI",
+        "ID",
+        "IN",
+        "IA",
+        "KY",
+        "LA",
+        "ME",
+        "MD",
+        "MI",
+        "MN",
+        "MS",
+        "MO",
+        "MT",
+        "NE",
+        "NV",
+        "NH",
+        "NJ",
+        "NM",
+        "NY",
+        "NC",
+        "ND",
+        "OH",
+        "OK",
+        "OR",
+        "PA",
+        "RI",
+        "SC",
+        "SD",
+        "TN",
+        "UT",
+        "VT",
+        "VA",
+        "WA",
+        "WV",
+        "WI",
+        "WY"
+      ],
+      "ct_ssp": [
+        "CT"
+      ],
+      "social_security": [
+        "AL",
+        "AK",
+        "AZ",
+        "AR",
+        "CA",
+        "CO",
+        "CT",
+        "DE",
+        "DC",
+        "FL",
+        "GA",
+        "HI",
+        "ID",
+        "IL",
+        "IN",
+        "IA",
+        "KS",
+        "KY",
+        "LA",
+        "ME",
+        "MD",
+        "MA",
+        "MI",
+        "MN",
+        "MS",
+        "MO",
+        "MT",
+        "NE",
+        "NV",
+        "NH",
+        "NJ",
+        "NM",
+        "NY",
+        "NC",
+        "ND",
+        "OH",
+        "OK",
+        "OR",
+        "PA",
+        "RI",
+        "SC",
+        "SD",
+        "TN",
+        "TX",
+        "UT",
+        "VT",
+        "VA",
+        "WA",
+        "WV",
+        "WI",
+        "WY"
+      ],
+      "ut_ssp": [
+        "UT"
+      ]
+    },
+    "household_state_benefits": {
+      "MN": {
+        "none": 12660.0,
+        "military": 0.0
+      }
+    },
+    "medicaid_cost": {
+      "AK": {
+        "none": 20469.77,
+        "military": 0.0
+      },
+      "CA": {
+        "none": 18472.96,
+        "military": 0.0
+      },
+      "NY": {
+        "none": 29421.73,
+        "military": 0.0
+      }
+    },
+    "mn_msa": {
+      "MN": {
+        "none": 12660.0,
+        "military": 0.0
+      }
+    },
+    "msp_cost": {
+      "HI": {
+        "none": 4869.6,
+        "military": 0.0
+      }
+    },
+    "snap": {
+      "AK": {
+        "none": 813.0,
+        "military": 0.0
+      },
+      "AZ": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "CA": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "CO": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "CT": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "DE": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "DC": {
+        "none": 360.0,
+        "military": 0.0
+      },
+      "FL": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "GA": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "IL": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "IA": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "KY": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "ME": {
+        "none": 306.0,
+        "military": 0.0
+      },
+      "MD": {
+        "none": 480.0,
+        "military": 0.0
+      },
+      "MA": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "MI": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "MT": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "NV": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "NH": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "NJ": {
+        "none": 1140.0,
+        "military": 0.0
+      },
+      "NM": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "NY": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "NC": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "OH": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "OR": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "PA": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "SC": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "TX": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "VT": {
+        "none": 306.0,
+        "military": 0.0
+      },
+      "VA": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "WA": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "WV": {
+        "none": 291.0,
+        "military": 0.0
+      },
+      "WI": {
+        "none": 291.0,
+        "military": 0.0
+      }
+    }
+  }
+}
