@@ -33,6 +33,9 @@ STATE_NAMES = {
     "WI": "Wisconsin", "WY": "Wyoming",
 }
 
+# The post numbers the two charts it shows; the other two specs stay unnumbered.
+FIGURE_NUMBERS = {"map_working_45": 1, "bar_retired_67": 2}
+
 TAX_BINS = [
     {"below": 1, "label": "$0 or less"},
     {"below": 500, "label": "$1 to $499"},
@@ -164,6 +167,8 @@ def main():
             ),
         }
         for name, spec in specs.items():
+            if name in FIGURE_NUMBERS:
+                spec["title"] = f"Figure {FIGURE_NUMBERS[name]}: {spec['title']}"
             (OUT / f"{name}.json").write_text(json.dumps(spec, indent=2) + "\n")
     print(
         f"wrote {len(list(OUT.glob('*.json')))} chart specs to {OUT.relative_to(ROOT)}"
