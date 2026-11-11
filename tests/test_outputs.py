@@ -78,8 +78,11 @@ def test_bar_chart_lists_exactly_the_states_where_the_couple_owes_more(arch):
     assert [code[r["state"]] for r in spec["data"]] == list(
         owes_more.sort_values("tax_on_military_pay", ascending=False).index
     )
+    federal = rows.federal_income_tax_military - rows.federal_income_tax_none
     for row in spec["data"]:
-        assert row["tax"] == round(float(rows.tax_on_military_pay[code[row["state"]]]))
+        st = code[row["state"]]
+        assert row["state_tax"] == round(float(rows.tax_on_military_pay[st]))
+        assert row["federal_tax"] == round(float(federal[st]))
 
 
 def test_post_embeds_the_current_chart_specs():

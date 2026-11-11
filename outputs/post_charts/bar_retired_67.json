@@ -1,57 +1,72 @@
 {
   "type": "bar",
-  "title": "Figure 2: Where $45,000 of military retired pay raises state income tax",
-  "subtitle": "Extra state income tax a married couple, ages 67 and 65, owes because of $45,000 of military retired pay, with $30,000 of Social Security, 2026",
+  "title": "Figure 2: Federal and state income tax on $45,000 of military retired pay",
+  "subtitle": "Extra federal and state income tax a married couple, ages 67 and 65, owes because of $45,000 of military retired pay, with $30,000 of Social Security, in the ten states where the pay raises state income tax, 2026",
   "orientation": "horizontal",
-  "legend": false,
+  "stacked": true,
   "xKey": "state",
   "series": [
     {
-      "key": "tax",
-      "name": "Extra state income tax",
+      "key": "state_tax",
+      "name": "State income tax",
       "color": "primary"
+    },
+    {
+      "key": "federal_tax",
+      "name": "Federal income tax",
+      "color": "quinary"
     }
   ],
   "data": [
     {
       "state": "Hawaii",
-      "tax": 440
+      "state_tax": 440,
+      "federal_tax": 1710
     },
     {
       "state": "Delaware",
-      "tax": 353
+      "state_tax": 353,
+      "federal_tax": 1710
     },
     {
       "state": "Montana",
-      "tax": 258
+      "state_tax": 258,
+      "federal_tax": 1710
     },
     {
       "state": "Vermont",
-      "tax": 250
+      "state_tax": 250,
+      "federal_tax": 1710
     },
     {
       "state": "Maine",
-      "tax": 220
+      "state_tax": 220,
+      "federal_tax": 1710
     },
     {
       "state": "New Mexico",
-      "tax": 152
+      "state_tax": 152,
+      "federal_tax": 1710
     },
     {
       "state": "Indiana",
-      "tax": 140
+      "state_tax": 140,
+      "federal_tax": 1710
     },
     {
       "state": "Oklahoma",
-      "tax": 80
+      "state_tax": 80,
+      "federal_tax": 1710
     },
     {
       "state": "Arizona",
-      "tax": 50
+      "state_tax": 50,
+      "federal_tax": 1710
     },
     {
       "state": "Idaho",
-      "tax": 10
+      "state_tax": 10,
+      "federal_tax": 1710
     }
   ],
   "format": {

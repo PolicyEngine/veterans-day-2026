@@ -77,25 +77,47 @@ def state_map(df: pd.DataFrame, arch: dict, meta: dict, title: str) -> dict:
     }
 
 
+NUMBER_WORDS = {
+    1: "one", 2: "two", 3: "three", 4: "four", 5: "five",
+    6: "six", 7: "seven", 8: "eight", 9: "nine", 10: "ten",
+}
+
+
+def places(states: set) -> str:
+    """'ten states', or 'nine states and DC' when DC is among them."""
+    n = len(states - {"DC"})
+    words = f"{NUMBER_WORDS.get(n, str(n))} states"
+    return f"{words} and DC" if "DC" in states else words
+
+
 def taxing_states_bar(df: pd.DataFrame, arch: dict, meta: dict, title: str) -> dict:
+    """Stacked horizontal bars: the state tax the pay adds, then the federal tax.
+
+    The state segment starts at zero so readers can compare it across states;
+    the federal segment sits on top, and each bar's label gives the total.
+    """
     taxed = df[df.tax_on_military_pay >= 1].sort_values(
         "tax_on_military_pay", ascending=False
     )
-    # Horizontal bars put the dollars on the x-axis; the subtitle names the
-    # one series, so the chart needs no legend.
+    federal = taxed.federal_income_tax_military - taxed.federal_income_tax_none
     return {
         "type": "bar",
         "title": title,
-        "subtitle": arch["subtitle"],
+        "subtitle": arch["subtitle"].replace("{n}", places(set(taxed.state))),
         "orientation": "horizontal",
-        "legend": False,
+        "stacked": True,
         "xKey": "state",
         "series": [
-            {"key": "tax", "name": "Extra state income tax", "color": "primary"}
+            {"key": "state_tax", "name": "State income tax", "color": "primary"},
+            {"key": "federal_tax", "name": "Federal income tax", "color": "quinary"},
         ],
         "data": [
-            {"state": STATE_NAMES[r.state], "tax": round(float(r.tax_on_military_pay))}
-            for r in taxed.itertuples()
+            {
+                "state": STATE_NAMES[r.state],
+                "state_tax": round(float(r.tax_on_military_pay)),
+                "federal_tax": round(float(f)),
+            }
+            for r, f in zip(taxed.itertuples(), federal)
         ],
         "format": {"decimals": 0, "prefix": "$", "separator": True},
         "source": source_line(meta),
@@ -140,6 +162,12 @@ def main():
                 "$60,000 of wages, 2026"
             ),
             "note": negative_note(df[df.archetype == "working_45"]),
+            "bar_subtitle": (
+                "Extra federal and state income tax a married couple owes when "
+                "one spouse, age 45, receives $30,000 of military retired pay on "
+                "top of $60,000 of wages, in the {n} where the pay raises "
+                "state income tax, 2026"
+            ),
         },
         "retired_67": {
             "subtitle": (
@@ -148,6 +176,12 @@ def main():
                 "Security, 2026"
             ),
             "note": negative_note(df[df.archetype == "retired_67"]),
+            "bar_subtitle": (
+                "Extra federal and state income tax a married couple, ages 67 "
+                "and 65, owes because of $45,000 of military retired pay, with "
+                "$30,000 of Social Security, in the {n} where the pay "
+                "raises state income tax, 2026"
+            ),
         },
     }
     OUT.mkdir(parents=True, exist_ok=True)
@@ -161,9 +195,9 @@ def main():
             ),
             f"bar_{key}": taxing_states_bar(
                 sub,
-                arch,
+                {**arch, "subtitle": arch["bar_subtitle"]},
                 meta,
-                f"Where {pay} of military retired pay raises state income tax",
+                f"Federal and state income tax on {pay} of military retired pay",
             ),
         }
         for name, spec in specs.items():

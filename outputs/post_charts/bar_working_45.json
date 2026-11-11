@@ -1,57 +1,72 @@
 {
   "type": "bar",
-  "title": "Where $30,000 of military retired pay raises state income tax",
-  "subtitle": "Extra state income tax a married couple owes when one spouse, age 45, receives $30,000 of military retired pay on top of $60,000 of wages, 2026",
+  "title": "Federal and state income tax on $30,000 of military retired pay",
+  "subtitle": "Extra federal and state income tax a married couple owes when one spouse, age 45, receives $30,000 of military retired pay on top of $60,000 of wages, in the nine states and DC where the pay raises state income tax, 2026",
   "orientation": "horizontal",
-  "legend": false,
+  "stacked": true,
   "xKey": "state",
   "series": [
     {
-      "key": "tax",
-      "name": "Extra state income tax",
+      "key": "state_tax",
+      "name": "State income tax",
       "color": "primary"
+    },
+    {
+      "key": "federal_tax",
+      "name": "Federal income tax",
+      "color": "quinary"
     }
   ],
   "data": [
     {
       "state": "Oregon",
-      "tax": 2310
+      "state_tax": 2310,
+      "federal_tax": 3600
     },
     {
       "state": "District of Columbia",
-      "tax": 1900
+      "state_tax": 1900,
+      "federal_tax": 3600
     },
     {
       "state": "Delaware",
-      "tax": 1087
+      "state_tax": 1087,
+      "federal_tax": 3600
     },
     {
       "state": "Maryland",
-      "tax": 831
+      "state_tax": 831,
+      "federal_tax": 3600
     },
     {
       "state": "Montana",
-      "tax": 705
+      "state_tax": 705,
+      "federal_tax": 3600
     },
     {
       "state": "Colorado",
-      "tax": 660
+      "state_tax": 660,
+      "federal_tax": 3600
     },
     {
       "state": "Utah",
-      "tax": 390
+      "state_tax": 390,
+      "federal_tax": 3600
     },
     {
       "state": "California",
-      "tax": 278
+      "state_tax": 278,
+      "federal_tax": 3600
     },
     {
       "state": "South Carolina",
-      "tax": 142
+      "state_tax": 142,
+      "federal_tax": 3600
     },
     {
       "state": "Maine",
-      "tax": 60
+      "state_tax": 60,
+      "federal_tax": 3600
     }
   ],
   "format": {

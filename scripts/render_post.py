@@ -16,6 +16,10 @@ Placeholders:
                             the state (by name) and amount with the largest and
                             smallest tax_on_military_pay of $1 or more
   {{fedchange:ARCH}}        the federal income tax the pay adds, as "$1,234"
+  {{keepmin:ARCH}} {{keepmax:ARCH}}
+                            the least and most of the pay the couple keeps after
+                            the federal and state income tax it adds, across all
+                            states and DC
   {{usd:ARCH:ST:COLUMN}}    any dollar column of the results CSV for a state, as
                             "$1,234" (for example federal_agi_military)
 
@@ -194,6 +198,19 @@ class Renderer:
             raise ValueError(f"{arch}: federal tax change differs across states")
         return dollars(change.iloc[0])
 
+    def keep(self, arch: str, largest: bool) -> str:
+        """The pay less the federal and state income tax it adds, at the extreme."""
+        rows = self.rows(arch)
+        pay = json.loads((ROOT / "outputs" / "run_metadata.json").read_text())[
+            "archetypes"
+        ][arch]["pension"]
+        kept = (
+            pay
+            - (rows.federal_income_tax_military - rows.federal_income_tax_none)
+            - rows.tax_on_military_pay
+        )
+        return dollars(kept.max() if largest else kept.min())
+
     def chart(self, name: str) -> str:
         """A ```chart block with each data row and bin on one line, as posts write them."""
         spec = json.loads((self.charts / f"{name}.json").read_text())
@@ -226,6 +243,8 @@ class Renderer:
             return dollars(self.extreme(*parts, kind == "maxtax").tax_on_military_pay)
         if kind == "fedchange":
             return self.fedchange(*parts)
+        if kind in ("keepmin", "keepmax"):
+            return self.keep(*parts, kind == "keepmax")
         if kind == "usd":
             return dollars(self.value(*parts))
         raise KeyError(f"unknown placeholder {match.group(0)}")
