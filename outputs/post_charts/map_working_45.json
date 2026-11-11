@@ -10,10 +10,6 @@
       "tax": -180
     },
     {
-      "state": "AK",
-      "tax": 0
-    },
-    {
       "state": "AZ",
       "tax": 0
     },
@@ -40,10 +36,6 @@
     {
       "state": "DC",
       "tax": 1897
-    },
-    {
-      "state": "FL",
-      "tax": 0
     },
     {
       "state": "GA",
@@ -118,14 +110,6 @@
       "tax": 0
     },
     {
-      "state": "NV",
-      "tax": 0
-    },
-    {
-      "state": "NH",
-      "tax": 0
-    },
-    {
       "state": "NJ",
       "tax": 0
     },
@@ -170,18 +154,6 @@
       "tax": 142
     },
     {
-      "state": "SD",
-      "tax": 0
-    },
-    {
-      "state": "TN",
-      "tax": 0
-    },
-    {
-      "state": "TX",
-      "tax": 0
-    },
-    {
       "state": "UT",
       "tax": 390
     },
@@ -194,26 +166,18 @@
       "tax": 0
     },
     {
-      "state": "WA",
-      "tax": 0
-    },
-    {
       "state": "WV",
       "tax": 0
     },
     {
       "state": "WI",
       "tax": 0
-    },
-    {
-      "state": "WY",
-      "tax": 0
     }
   ],
   "bins": [
     {
       "below": 1,
-      "label": "None"
+      "label": "$0 or less"
     },
     {
       "below": 500,
@@ -231,11 +195,11 @@
       "label": "$2,000 and up"
     }
   ],
-  "note": "Alabama and Missouri let filers deduct federal income tax, which the pay raises, so the pay lowers their state income tax.",
+  "note": "Alabama and Missouri let filers deduct federal income tax, which the pay raises, so the pay lowers their state income tax. States marked with a dash levy no broad income tax.",
   "format": {
     "decimals": 0,
     "prefix": "$",
     "separator": true
   },
-  "source": "Source: PolicyEngine-US checkout bfeef52eb9 household calculations for 2026; github.com/PolicyEngine/veterans-day-2026."
+  "source": "Source: PolicyEngine-US household calculations for 2026; github.com/PolicyEngine/veterans-day-2026."
 }

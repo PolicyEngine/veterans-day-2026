@@ -2,7 +2,7 @@
   "year": 2026,
   "policyengine_us_installed": "2.105.0",
   "policyengine_core": "3.34.9",
-  "policyengine_us": "checkout bfeef52eb9",
+  "policyengine_us": "checkout 568cfa9d86",
   "policyengine_us_from": "checkout",
   "policyengine_us_branch": "HEAD",
   "policyengine_us_dirty": false,

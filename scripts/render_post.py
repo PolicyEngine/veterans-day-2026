@@ -119,10 +119,32 @@ def dollars(x: float) -> str:
     return f"${abs(round(x)):,}"
 
 
+# The template names these states in its prose and tables. A run that moves a
+# state into or out of a set fails the render, so the words never trail the CSV.
+EXPECTED = {
+    "working_45": {
+        "more": {"CA", "CO", "DE", "DC", "ME", "MD", "MT", "OR", "SC", "UT"},
+        "less": {"AL", "MO"},
+    },
+    "retired_67": {
+        "more": {"AZ", "DE", "DC", "HI", "ID", "IN", "ME", "MT", "NM", "OK", "VT"},
+        "less": set(),
+    },
+}
+
+
 class Renderer:
     def __init__(self, df: pd.DataFrame, charts: pathlib.Path):
         self.df = df
         self.charts = charts
+        for arch, expected in EXPECTED.items():
+            tax = self.rows(arch).set_index("state").tax_on_military_pay.round()
+            found = {"more": set(tax[tax >= 1].index), "less": set(tax[tax <= -1].index)}
+            if found != expected:
+                raise ValueError(
+                    f"{arch}: the template names {expected}, but the results give "
+                    f"{found}; rewrite the template's prose, then update EXPECTED"
+                )
 
     def rows(self, arch: str) -> pd.DataFrame:
         rows = self.df[self.df.archetype == arch]

@@ -28,12 +28,24 @@
       "tax": 272
     },
     {
+      "state": "VT",
+      "tax": 250
+    },
+    {
       "state": "ME",
       "tax": 215
     },
     {
+      "state": "NM",
+      "tax": 152
+    },
+    {
       "state": "IN",
       "tax": 140
+    },
+    {
+      "state": "OK",
+      "tax": 80
     },
     {
       "state": "AZ",
@@ -49,5 +61,5 @@
     "prefix": "$",
     "separator": true
   },
-  "source": "Source: PolicyEngine-US checkout bfeef52eb9 household calculations for 2026; github.com/PolicyEngine/veterans-day-2026."
+  "source": "Source: PolicyEngine-US household calculations for 2026; github.com/PolicyEngine/veterans-day-2026."
 }

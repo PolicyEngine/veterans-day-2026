@@ -17,7 +17,7 @@ OUT = ROOT / "outputs" / "post_charts"
 NO_INCOME_TAX = {"AK", "FL", "NV", "NH", "SD", "TN", "TX", "WA", "WY"}
 
 TAX_BINS = [
-    {"below": 1, "label": "None"},
+    {"below": 1, "label": "$0 or less"},
     {"below": 500, "label": "$1 to $499"},
     {"below": 1000, "label": "$500 to $999"},
     {"below": 2000, "label": "$1,000 to $1,999"},
@@ -26,17 +26,22 @@ TAX_BINS = [
 
 
 def source_line(meta: dict) -> str:
+    """Name the release when the run used one; a checkout's hash stays in run_metadata.json."""
+    version = (
+        f" {meta['policyengine_us']}" if meta["policyengine_us_from"] == "release" else ""
+    )
     return (
-        "Source: PolicyEngine-US "
-        f"{meta['policyengine_us']} household calculations for {meta['year']}; "
+        f"Source: PolicyEngine-US{version} household calculations for {meta['year']}; "
         "github.com/PolicyEngine/veterans-day-2026."
     )
 
 
 def state_map(df: pd.DataFrame, arch: dict, meta: dict, title: str) -> dict:
+    # States with no broad income tax carry no value, so the map prints a dash.
     rows = [
         {"state": r.state, "tax": round(float(r.tax_on_military_pay))}
         for r in df.itertuples()
+        if r.state not in NO_INCOME_TAX
     ]
     return {
         "type": "stateMap",
@@ -90,7 +95,8 @@ def negative_note(df: pd.DataFrame) -> str:
     listed = " and ".join(names[s] for s in below)
     return (
         f"{listed} let filers deduct federal income tax, which the pay raises, "
-        "so the pay lowers their state income tax."
+        "so the pay lowers their state income tax. States marked with a dash "
+        "levy no broad income tax."
     )
 
 

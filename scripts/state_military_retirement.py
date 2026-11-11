@@ -90,6 +90,19 @@ STATES = [
 # spouse, so PolicyEngine makes them the tax-unit head. Each retiree served 20
 # years, from January of `service_start` through December 19 years later, and
 # has drawn retired pay since. North Carolina's deduction requires 20 years.
+#
+# Military retirees and their spouses have TRICARE, which is minimum essential
+# coverage (26 U.S.C. 5000A(f)(1)(A)(iv)), so neither spouse buys a Marketplace
+# plan or claims the premium tax credit in any scenario. Without this input
+# PolicyEngine-US enrolls the 45-year-old's household in a Marketplace plan,
+# and the credit it loses when the pay lifts income past 400% of the poverty
+# line would enter Oregon's federal tax subtraction.
+#
+# PolicyEngine-US infers veteran status from VA payments (is_veteran is
+# veterans_benefits > 0), and these retirees receive none, so the script sets
+# is_veteran itself. The retiree is a veteran with or without the pay; the
+# neighbor with a private pension (the civilian scenario) is not. Vermont's
+# veteran credit (32 V.S.A. § 5830g) reads this input.
 SERVICE_YEARS = 20
 # First year of service by retiree age: the 45-year-old served 2001 to 2020,
 # the 67-year-old 1977 to 1996.
@@ -180,6 +193,8 @@ def situation(arch, scenario):
             "age": {YEAR: arch["head_age"]},
             "employment_income": {YEAR: arch["head_wages"]},
             "years_in_military": {YEAR: SERVICE_YEARS},
+            "has_tricare_health_coverage_at_interview": {YEAR: True},
+            "is_veteran": {YEAR: scenario != "civilian"},
             "military_retirement_pay": {YEAR: arch["pension"] if military else 0},
             "taxable_private_pension_income": {
                 YEAR: arch["pension"] if scenario == "civilian" else 0
@@ -197,6 +212,7 @@ def situation(arch, scenario):
         people[spouse] = {
             "age": {YEAR: arch["spouse_age"]},
             "employment_income": {YEAR: arch["spouse_wages"]},
+            "has_tricare_health_coverage_at_interview": {YEAR: True},
         }
         members = [head, spouse]
         units["tax_units"][f"{state}_tu"] = {
@@ -220,6 +236,8 @@ def run(arch):
     out = {}
     for scenario in ("military", "civilian", "none"):
         sim = Simulation(situation=situation(arch, scenario))
+        ptc = sim.calculate("premium_tax_credit", YEAR)
+        assert (ptc == 0).all(), f"{scenario}: a household claims the premium tax credit"
         out[scenario] = {
             "state_income_tax": sim.calculate("state_income_tax", YEAR),
             "state_agi": sim.calculate("state_agi", YEAR),
